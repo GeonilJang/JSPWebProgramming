@@ -1,6 +1,8 @@
 package com.test.ex01;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,17 @@ import javax.servlet.http.HttpServletResponse;
  *   . 메소드 : setContentType(String type) , setContentLength(int length), getWriter()
  *   
  *   
+ *  + doGet 메소드의 호출 : html form태그에서 method=get일 때 호출, 또는 url 창에다 직접 서블릿 맵핑한 servlet url을 입력했을 때도 호출
+ *  + doPost 메소드의 호출 : html form태그에서 method=post일 때 호출
+ *  
+ *   
+ *  + throws 절에 있는 ServletException 과 IOException은 생략이 가능, 다른 익셉션을 추가 할 수 없음.
+ *  
+ *   
+ *  + 서블릭의 동작 순서
+ *   웹 브라우저 -> 웹서버 -> 웹어플리케이션 서버 -> 서블릿 컨테이너(스레드 생성)
+ *   
+ *   
  * 
  * */
 
@@ -50,12 +63,40 @@ public class Servlet_Demo01 extends HttpServlet {
 
 	//request : 클라이언트의 요청 값 / response : 서버에서 사용자에게
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		int sum = 0 ; 
+		for (int cnt = 0 ; cnt <= 100; cnt++) {
+			sum += cnt;
+		}
+		
+		response.setContentType("text/html; charset=euc-kr"); 
+		PrintWriter out = response.getWriter();//웹 브라우저에 출력할 스트림을 얻어오는 과정
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>백까지의 합");
+		out.println("</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.printf("100까지의 합결과 : %d",sum);
+		out.println("</body>");
+		out.println("</html>");
+		
+		
+		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		response.setContentType("text/html; charset=euc-kr"); 
+		PrintWriter out = response.getWriter();//웹 브라우저에 출력할 스트림을 얻어오는 과정
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>백까지의 합");
+		out.println("</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.printf("post");
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 }
