@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>id</param-name>
+    <param-value>test333</param-value>
+  </context-param>
+  <context-param>
+    <param-name>password</param-name>
+    <param-value>1234</param-value>
+  </context-param>
+  <context-param>
+    <param-name>local</param-name>
+    <param-value>jeju</param-value>
+  </context-param>
+  
+  
+  <listener>
+  	<listener-class>com.test.ex01.ContextL</listener-class>
+  </listener>
+  
+  
+  
 </web-app>
